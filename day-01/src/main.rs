@@ -2,6 +2,9 @@ use std::io;
 
 use anyhow::Error;
 
+const PART_1_WINDOW: usize = 2;
+const PART_2_WINDOW: usize = 4;
+
 fn read_stdin() -> Result<String, Error> {
     let mut buf = String::new();
     io::Read::read_to_string(&mut io::stdin(), &mut buf)?;
@@ -19,8 +22,25 @@ fn main() -> Result<(), Error> {
         .map(|line| Ok(line.trim().parse()?))
         .collect::<Result<Vec<i64>, Error>>()?;
 
-    println!("Part 1: {}", solution(&nums, 2));
-    println!("Part 2: {}", solution(&nums, 4));
+    println!("Part 1: {}", solution(&nums, PART_1_WINDOW));
+    println!("Part 2: {}", solution(&nums, PART_2_WINDOW));
 
     Ok(())
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    static INPUT: &[i64] = &[199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
+
+    #[test]
+    fn part_1() {
+        assert_eq!(solution(INPUT, PART_1_WINDOW), 7);
+    }
+
+    #[test]
+    fn part_2() {
+        assert_eq!(solution(INPUT, PART_2_WINDOW), 5);
+    }
 }
