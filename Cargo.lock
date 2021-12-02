@@ -12,11 +12,18 @@ checksum = "8b26702f315f53b6071259e15dd9d64528213b44d61de1ec926eca7715d62203"
 name = "day-01"
 version = "0.1.0"
 dependencies = [
- "anyhow",
+ "util",
 ]
 
 [[package]]
 name = "day-02"
+version = "0.1.0"
+dependencies = [
+ "util",
+]
+
+[[package]]
+name = "util"
 version = "0.1.0"
 dependencies = [
  "anyhow",

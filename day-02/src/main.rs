@@ -1,13 +1,4 @@
-use std::io;
-use std::str::FromStr;
-
-use anyhow::{Context, Error};
-
-fn read_stdin() -> Result<String, Error> {
-    let mut buf = String::new();
-    io::Read::read_to_string(&mut io::stdin(), &mut buf)?;
-    Ok(buf)
-}
+use util::*;
 
 enum Direction {
     Up(i64),
@@ -27,17 +18,9 @@ impl FromStr for Direction {
             "up" => Self::Up(d),
             "down" => Self::Down(d),
             "forward" => Self::Forward(d),
-            _ => anyhow::bail!("Invalid direction {}", l),
+            _ => bail!("Invalid direction {}", l),
         })
     }
-}
-
-fn parse_input(input: &str) -> Result<Vec<Direction>, Error> {
-    input
-        .trim()
-        .lines()
-        .map(Direction::from_str)
-        .collect()
 }
 
 fn part_1(directions: &[Direction]) -> i64 {
@@ -72,7 +55,7 @@ fn part_2(directions: &[Direction]) -> i64 {
 }
 
 fn main() -> Result<(), Error> {
-    let directions = parse_input(&read_stdin()?)?;
+    let directions = read_stdin()?.try_from_lines()?;
 
     println!("Part 1: {}", part_1(&directions));
     println!("Part 2: {}", part_2(&directions));
@@ -95,14 +78,14 @@ mod test {
 
     #[test]
     fn part_1() -> Result<(), Error> {
-        let directions = parse_input(INPUT)?;
+        let directions = INPUT.try_from_lines()?;
         assert_eq!(super::part_1(&directions), 150);
         Ok(())
     }
 
     #[test]
     fn part_2() -> Result<(), Error> {
-        let directions = parse_input(INPUT)?;
+        let directions = INPUT.try_from_lines()?;
         assert_eq!(super::part_2(&directions), 900);
         Ok(())
     }
