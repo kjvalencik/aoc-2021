@@ -1,3 +1,4 @@
+pub use std::convert::TryInto;
 use std::io;
 pub use std::str::FromStr;
 

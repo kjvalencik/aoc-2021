@@ -46,7 +46,7 @@ impl Puzzle {
 
     fn rating(&self, use_gamma: bool) -> u64 {
         let mut puzzle = self.clone();
-        let mut mask = 1 << puzzle.len - 1;
+        let mut mask = 1 << (puzzle.len - 1);
 
         while puzzle.nums.len() > 1 {
             let (gamma, epsilon) = puzzle.gamma_epsilon();
