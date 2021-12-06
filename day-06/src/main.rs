@@ -9,9 +9,8 @@ impl Puzzle {
     fn days(&self, n: usize) -> usize {
         let mut fish = self.fish.clone();
 
-        for _ in 0..n {
-            fish.rotate_left(1);
-            fish[6] += fish[8];
+        for i in 0..n {
+            fish[(i + 7) % 9] += fish[i % 9];
         }
 
         fish.into_iter().sum()
