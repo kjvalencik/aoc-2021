@@ -7,7 +7,7 @@ struct Puzzle {
 
 impl Puzzle {
     fn days(&self, n: usize) -> usize {
-        let mut fish = self.fish.clone();
+        let mut fish = self.fish;
 
         for i in 0..n {
             fish[(i + 7) % 9] += fish[i % 9];
@@ -43,7 +43,7 @@ fn main() -> Result<(), Error> {
     let puzzle = Puzzle::from_str(&read_stdin()?)?;
 
     println!("Part 1: {}", puzzle.part_1());
-    println!("Part 1: {}", puzzle.part_2());
+    println!("Part 2: {}", puzzle.part_2());
 
     Ok(())
 }
