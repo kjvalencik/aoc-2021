@@ -3,6 +3,7 @@ use std::io;
 pub use std::str::FromStr;
 
 pub use anyhow::{bail, Context, Error};
+pub use itertools::{self, Itertools};
 
 pub fn read_stdin() -> Result<String, io::Error> {
     let mut buf = String::new();
