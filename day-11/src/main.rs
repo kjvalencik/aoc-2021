@@ -9,18 +9,9 @@ impl FromStr for Puzzle {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let energy = s
-            .trim()
-            .lines()
-            .map(|line| {
-                line.trim()
-                    .chars()
-                    .map(|c| Ok(u64::from_str(&c.to_string())?))
-                    .collect::<Result<_, Error>>()
-            })
-            .collect::<Result<_, _>>()?;
-
-        Ok(Self { energy })
+        Ok(Self {
+            energy: parse_grid(s)?,
+        })
     }
 }
 

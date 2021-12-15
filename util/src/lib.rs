@@ -37,3 +37,15 @@ fn parser<'a, T, E>(input: &'a str, parse: impl Fn(&'a str) -> Result<T, E>) -> 
         .map(parse)
         .collect::<Result<_, _>>()
 }
+
+pub fn parse_grid(s: &str) -> Result<Vec<Vec<u64>>, Error> {
+    s.trim()
+        .lines()
+        .map(|line| {
+            line.trim()
+                .chars()
+                .map(|c| Ok(u64::from_str(&c.to_string())?))
+                .collect::<Result<_, Error>>()
+        })
+        .collect::<Result<_, _>>()
+}
