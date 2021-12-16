@@ -4,7 +4,7 @@ pub use std::error;
 pub use std::fmt;
 pub use std::io;
 pub use std::iter;
-pub use std::str::FromStr;
+pub use std::str::{self, FromStr};
 
 pub use anyhow::{bail, Context, Error};
 pub use itertools::{self, Itertools};
