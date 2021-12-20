@@ -9,6 +9,7 @@ pub use std::str::{self, FromStr};
 
 pub use anyhow::{bail, Context, Error};
 pub use itertools::{self, Itertools};
+pub use rayon::prelude::*;
 
 pub fn read_stdin() -> Result<String, io::Error> {
     let mut buf = String::new();
