@@ -1,4 +1,5 @@
 pub use std::collections::{HashMap, HashSet};
+pub use std::convert::TryFrom;
 pub use std::convert::TryInto;
 pub use std::error;
 pub use std::fmt;
