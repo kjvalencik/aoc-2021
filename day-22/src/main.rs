@@ -27,7 +27,11 @@ impl Cube {
 
     fn split<'a>(&'a self, cube: &'a Cube) -> impl Iterator<Item = Cube> + 'a {
         fn permute(l: (i64, i64), r: (i64, i64)) -> [(i64, i64); 3] {
-            [(l.0, r.0.min(l.1)), (r.0.max(l.0), r.1.min(l.1)), (r.1.max(l.0), l.1)]
+            [
+                (l.0, r.0.min(l.1)),
+                (r.0.max(l.0), r.1.min(l.1)),
+                (r.1.max(l.0), l.1),
+            ]
         }
 
         permute(self.x, cube.x)
@@ -116,7 +120,8 @@ impl FromStr for Puzzle {
 
 impl Puzzle {
     fn part_1(&self) -> usize {
-        let steps = self.steps
+        let steps = self
+            .steps
             .iter()
             .filter(|step| {
                 let is_range = |(l, r)| l >= -50 && r <= 51;
@@ -281,10 +286,16 @@ mod test {
 
     #[test]
     fn simple() -> Result<(), Error> {
-        assert_eq!(Puzzle::from_str(r#"
+        assert_eq!(
+            Puzzle::from_str(
+                r#"
             on x=1..3,y=1..3,z=1..3
             off x=-1..3,y=1..3,z=1..2
-        "#)?.part_1(), 9);
+        "#
+            )?
+            .part_1(),
+            9
+        );
         Ok(())
     }
 

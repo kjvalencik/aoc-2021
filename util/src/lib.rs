@@ -1,11 +1,11 @@
-pub use std::collections::{HashMap, HashSet};
+pub use std::collections::{hash_map::Entry, HashMap, HashSet};
 pub use std::convert::TryFrom;
 pub use std::convert::TryInto;
 pub use std::error;
 pub use std::fmt;
 pub use std::io;
 pub use std::iter;
-pub use std::ops::RangeInclusive;
+pub use std::ops::{self, RangeInclusive};
 pub use std::str::{self, FromStr};
 
 pub use anyhow::{bail, Context, Error};
