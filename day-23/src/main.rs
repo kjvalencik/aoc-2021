@@ -128,8 +128,8 @@ impl<const HEIGHT: usize> Puzzle<HEIGHT> {
                     let is_end = y == rooms.len() - 1;
                     let is_mixed = !is_end
                         && (&rooms[y..(rooms.len() - 1)])
-                        .iter()
-                        .any(|room| room[x] != r);
+                            .iter()
+                            .any(|room| room[x] != r);
 
                     let mut check = |dest| {
                         let d = hall[dest];
